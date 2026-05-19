@@ -1,12 +1,12 @@
 <?php
 /**
  * 
- * zca_bootstrap_id.php
+ * lang.zca_bootstrap_id.php
  *
  * @copyright Copyright 2018 zcadditions.com/vinosdefrutastropicales.com
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  *
- * Bootstrap 3.7.9
+ * Bootstrap 3.8.0
  */
 // -----
 // The presence of the following definition identifies the template as either
@@ -18,4 +18,6 @@
 // identify the current template as a "bootstrap" one, if the definition is
 // present.
 //
-define('IS_ZCA_BOOTSTRAP_TEMPLATE', 'true');
+return [
+    'IS_ZCA_BOOTSTRAP_TEMPLATE' => 'true',
+];
