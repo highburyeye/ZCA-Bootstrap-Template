@@ -6,7 +6,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: Author: DrByte  Fri Feb 26 00:25:51 2016 -0500 Modified in v1.5.5 $
  *
- * BOOTSTRAP v3.7.9
+ * BOOTSTRAP v3.8.0
  */
 require 'includes/application_top.php';
 
@@ -174,7 +174,7 @@ switch ($action) {
 
     <!-- body //-->
     <div class="container-fluid">
-        <h1><?= HEADING_TITLE ?> <small><b>(v<?= ZCA_BOOTSTRAP_COLORS_CURRENT_VERSION ?>)</b></small></h1>
+        <h1><?= HEADING_TITLE ?> <small><b>(v<?= zen_config('ZCA_BOOTSTRAP_COLORS_VERSION') ?>)</b></small></h1>
         <p><?= TEXT_INFORMATION ?></p>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 configurationColumnLeft">
@@ -314,7 +314,7 @@ switch ($action) {
         $value_field = zen_draw_input_field('configuration_value', htmlspecialchars($cInfo->configuration_value, ENT_COMPAT, CHARSET, true), 'size="60" class="cfgInput form-control col-md-3" id="full-popover" data-color-format="hex"');
 
         $contents = ['form' => zen_draw_form('configuration', FILENAME_ZCA_BOOTSTRAP_COLORS, 'cID=' . (int)$cInfo->configuration_id . '&action=save')];
-        if (ADMIN_CONFIGURATION_KEY_ON === '1') {
+        if (zen_config('ADMIN_CONFIGURATION_KEY_ON') === '1') {
             $contents[] = ['text' => '<strong>Key: ' . $cInfo->configuration_key . '</strong><br>'];
         }
         $contents[] = ['text' => TEXT_INFO_EDIT_INTRO];
@@ -330,7 +330,7 @@ switch ($action) {
     default:
         if (isset($cInfo) && is_object($cInfo)) {
             $heading[] = ['text' => '<h4>' . $cInfo->configuration_title . '</h4>'];
-            if (ADMIN_CONFIGURATION_KEY_ON == 1) {
+            if (zen_config('ADMIN_CONFIGURATION_KEY_ON') === '1') {
                 $contents[] = ['text' => '<strong>Key: ' . $cInfo->configuration_key . '</strong><br>'];
             }
 

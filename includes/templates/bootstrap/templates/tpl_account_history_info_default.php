@@ -2,7 +2,7 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v3.7.4
+ * BOOTSTRAP v3.8.0
  *
  * Loaded automatically by index.php?main_page=account_edit.
  * Displays information related to a single specific order
@@ -141,7 +141,7 @@ foreach ($order->totals as $total) {
 /**
  * Used to display any downloads associated with the cutomers account
  */
-if (DOWNLOAD_ENABLED === 'true') {
+if (zen_config('DOWNLOAD_ENABLED') === 'true') {
     require $template->get_template_dir('tpl_modules_downloads.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_downloads.php';
 }
 

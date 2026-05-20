@@ -7,7 +7,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: Pan2020 2019 Mar 27 Modified in v1.5.6b $
  *
- * BOOTSTRAP v3.6.4
+ * BOOTSTRAP v3.8.0
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -53,7 +53,7 @@ if ((($manufacturers_id > 0 && empty($_GET['filter_id'])) || !empty($_GET['music
 
 $num_products_count = 0;
 if ($featured_products_query !== '') {
-    $featured_products = $db->ExecuteRandomMulti($featured_products_query, MAX_DISPLAY_SEARCH_RESULTS_FEATURED);
+    $featured_products = $db->ExecuteRandomMulti($featured_products_query, zen_config('MAX_DISPLAY_SEARCH_RESULTS_FEATURED'));
     $num_products_count = $featured_products->RecordCount();
 }
 
@@ -77,10 +77,10 @@ if ($num_products_count > 0) {
         $featured_products_link = zen_href_link(zen_get_info_page($featured_products_id), 'cPath=' . $productsInCategory[$featured_products_id] . '&products_id=' . $featured_products_id);
 
         $featured_products_image = '';
-        if (!($featured_products->fields['products_image'] === '' && PRODUCTS_IMAGE_NO_IMAGE_STATUS === '0')) {
+        if (!($featured_products->fields['products_image'] === '' && zen_config('PRODUCTS_IMAGE_NO_IMAGE_STATUS') === '0')) {
             $featured_products_image =
                 '<a href="' . $featured_products_link . '" title="' . zen_output_string_protected($featured_products_name) . '">' .
-                    zen_image(DIR_WS_IMAGES . $featured_products->fields['products_image'], $featured_products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) .
+                    zen_image(DIR_WS_IMAGES . $featured_products->fields['products_image'], $featured_products_name, zen_config('SMALL_IMAGE_WIDTH'), zen_config('SMALL_IMAGE_HEIGHT')) .
                 '</a><br>';
         }
         $list_box_contents[$row][$col] = [
@@ -89,7 +89,7 @@ if ($num_products_count > 0) {
         ];
 
         $col++;
-        if ($col >= SHOW_PRODUCT_INFO_COLUMNS_FEATURED_PRODUCTS) {
+        if ($col >= zen_config('SHOW_PRODUCT_INFO_COLUMNS_FEATURED_PRODUCTS')) {
             $col = 0;
             $row++;
         }

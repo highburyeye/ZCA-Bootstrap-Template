@@ -6,7 +6,7 @@
 // Adapted from the like-named page handling with the following history:
 // - Integrated COWAA v1.0 (@davewest)
 //
-// Last updated: OPC v2.5.4/Bootstrap v3.7.10
+// Last updated: OPC v2.5.4/Bootstrap v3.8.0
 //
 // -----
 // v3.7.3 and later, constants now have a 'ORDER_STATUS_' prefix to align with
@@ -124,7 +124,7 @@ if (isset($order)) {
     // We'll set the order's email address into the session for that module's processing and then remove
     // that value, once finished.
     //
-    if (DOWNLOAD_ENABLED === 'true') {
+    if (zen_config('DOWNLOAD_ENABLED') === 'true') {
         require $template->get_template_dir('tpl_modules_downloads.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_downloads.php';
     }
 

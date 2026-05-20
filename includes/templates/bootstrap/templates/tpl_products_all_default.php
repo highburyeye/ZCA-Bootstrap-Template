@@ -12,10 +12,10 @@
  */
 ?>
 <div id="productsAllDefault" class="centerColumn">
-    <h1 id="productsAllDefault-pageHeading" class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
+    <h1 id="productsAllDefault-pageHeading" class="pageHeading"><?= HEADING_TITLE ?></h1>
     <div class="row">
 <?php
-if (PRODUCT_LIST_ALPHA_SORTER === 'true') {
+if (zen_config('PRODUCT_LIST_ALPHA_SORTER') === 'true') {
 ?>
         <div class="col">
 <?php
