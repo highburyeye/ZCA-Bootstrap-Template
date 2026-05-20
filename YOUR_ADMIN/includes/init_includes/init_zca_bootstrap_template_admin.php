@@ -34,7 +34,7 @@ if (zen_is_superuser()) {
     // -----
     // If not yet installed (or pre-v3.2.0 version installed), perform the initial installation.
     //
-    if (!defined('ZCA_BOOTSTRAP_VERSION')) {
+    if (zen_config('ZCA_BOOTSTRAP_VERSION') === null) {
         require DIR_WS_INCLUDES . 'init_includes/init_zca_bootstrap_template_admin_install.php';
     }
 
@@ -42,7 +42,7 @@ if (zen_is_superuser()) {
     // Next, update the description of a couple of the built-in settings to let the store owner know that
     // they're not applicable/used when the ZCA bootstrap template is active.
     //
-    if (ZCA_BOOTSTRAP_VERSION === '0.0.0') {
+    if (zen_config('ZCA_BOOTSTRAP_VERSION') === '0.0.0') {
         $db->Execute(
             "UPDATE " . TABLE_CONFIGURATION . "
                 SET configuration_description = 'Width of the Left Column Boxes<br>px may be included<br>Default = 150px<br><b>This configuration has no affect with the ZCA Responsive Components or ZCA Bootstrap Themes</b>',
@@ -73,7 +73,7 @@ if (zen_is_superuser()) {
     // Next, if the currently-installed version is different from the current version of the
     // template, perform any updates required.
     //
-    if (ZCA_BOOTSTRAP_VERSION !== ZCA_BOOTSTRAP_CURRENT_VERSION) {
+    if (zen_config('ZCA_BOOTSTRAP_VERSION') !== ZCA_BOOTSTRAP_CURRENT_VERSION) {
         require DIR_WS_INCLUDES . 'init_includes/init_zca_bootstrap_template_admin_update.php';
     }
 }

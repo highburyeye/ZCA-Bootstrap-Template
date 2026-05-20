@@ -7,7 +7,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: init_bc_config.php
  *
- * BOOTSTRAP v3.7.4
+ * BOOTSTRAP v3.8.0
  */
 // -----
 // Brought in by /admin/init_includes/init_bc_config.php for an initial installation or upgrade to the colors. 
@@ -826,14 +826,14 @@ $zca_bc_colors = [
 // NOTE: No 'use_function' or 'set_function' needed for any of these human-enterable settings!
 //
 $zca_bc_installed = false;
-if (!defined('ZCA_BOOTSTRAP_COLORS_VERSION')) {
+if (zen_config('ZCA_BOOTSTRAP_COLORS_VERSION')) {
     // -----
     // Further, if this is an _initial_ install of the Bootstrap template and its associated colors, all
     // current colors' default values are set as their color selection.  If that color-setting *is* defined,
     // then any colors added on or after v3.5.2 will be added with a 'not-set' value to enable a
     // site to choose the best color for their store's color-scheme prior to use on the storefront.
     //
-    if (!defined('ZCA_BODY_TEXT_COLOR')) {
+    if (zen_config('ZCA_BODY_TEXT_COLOR') === null) {
         $zca_bc_installed = true;
     }
     $configuration_values = '';
@@ -925,7 +925,7 @@ unset($zca_bc_colors);
 // setting is recorded in the 'Modules' configuration group, so it's not displayed as a row
 // within the Tools :: ZCA Bootstrap Colors tool.
 //
-if (!defined('ZCA_BOOTSTRAP_COLORS_VERSION')) {
+if (zen_config('ZCA_BOOTSTRAP_COLORS_VERSION') === null) {
     $db->Execute(
         "INSERT INTO " . TABLE_CONFIGURATION . "
             (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, set_function)

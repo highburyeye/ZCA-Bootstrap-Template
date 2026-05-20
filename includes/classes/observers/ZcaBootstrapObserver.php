@@ -2,7 +2,7 @@
 // -----
 // Part of the ZCA Bootstrap template, @zcadditions, @lat9, @marco-pm
 //
-// BOOTSTRAP 3.7.6
+// BOOTSTRAP 3.8.0
 //
 class ZcaBootstrapObserver extends base
 {
@@ -28,7 +28,7 @@ class ZcaBootstrapObserver extends base
     //
     public function __construct()
     {
-        if (!defined('PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS')) {
+        if (zen_config('PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS') === null) {
             define('PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS', 'Yes');
         }
 
@@ -88,7 +88,7 @@ class ZcaBootstrapObserver extends base
                 );
 
                 if ($this->display_sale_price) {
-                    if (SHOW_SALE_DISCOUNT == 1) {
+                    if (zen_config('SHOW_SALE_DISCOUNT') === '1') {
                         if ($this->display_normal_price != 0) {
                             $show_discount_amount = number_format(100 - (($this->display_sale_price / $this->display_normal_price) * 100), SHOW_SALE_DISCOUNT_DECIMALS);
                         } else {
@@ -99,7 +99,7 @@ class ZcaBootstrapObserver extends base
                         $show_sale_discount = '<span class="mx-auto w-100 p-1 productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . $this->displayPrice($this->display_normal_price - $this->display_sale_price) . PRODUCT_PRICE_DISCOUNT_AMOUNT . '</span>';
                     }
                 } else {
-                    if (SHOW_SALE_DISCOUNT == 1) {
+                    if (zen_config('SHOW_SALE_DISCOUNT') === '1') {
                         $show_sale_discount = '<span class="mx-auto w-100 p-1 productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . number_format(100 - (($this->display_special_price / $this->display_normal_price) * 100), SHOW_SALE_DISCOUNT_DECIMALS) . PRODUCT_PRICE_DISCOUNT_PERCENTAGE . '</span>';
                     } else {
                         $show_sale_discount = '<span class="mx-auto w-100 p-1 productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . $this->displayPrice($this->display_normal_price - $this->display_special_price) . PRODUCT_PRICE_DISCOUNT_AMOUNT . '</span>';
@@ -205,7 +205,7 @@ class ZcaBootstrapObserver extends base
                 $free_tag = $call_tag = '';
 
                 if ($this->product_is_free == '1') {
-                    if (OTHER_IMAGE_PRICE_IS_FREE_ON == '0') {
+                    if (zen_config('OTHER_IMAGE_PRICE_IS_FREE_ON') === '0') {
                         $free_tag = '<span class="mx-auto w-100 p-1">' . PRODUCTS_PRICE_IS_FREE_TEXT . '</span>';
                     } else {
                         $free_tag = '<span class="mx-auto w-100 p-1">' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_PRICE_IS_FREE, PRODUCTS_PRICE_IS_FREE_TEXT, '', '', '') . '</span>';
@@ -213,7 +213,7 @@ class ZcaBootstrapObserver extends base
                 }
 
                 if ($this->product_is_call) {
-                    if (PRODUCTS_PRICE_IS_CALL_IMAGE_ON == '0') {
+                    if (zen_config('PRODUCTS_PRICE_IS_CALL_IMAGE_ON') === '0') {
                         $call_tag = '<span class="mx-auto w-100 p-1">' . PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT . '</span>';
                     } else {
                         $call_tag = '<span class="mx-auto w-100 p-1">' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_CALL_FOR_PRICE, PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT, '', '', '') . '</span>';
@@ -322,11 +322,11 @@ class ZcaBootstrapObserver extends base
                 break;
 
             case 'NOTIFY_MODULES_ADDITIONAL_IMAGES_SCRIPT_LINK':
-                if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS === 'Yes') {
+                if (zen_config('PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS') === 'Yes') {
                     $products_image_large = $p1['products_image_large'];
                     $i = $p1['index'];
                     $link = '<a href="javascript:void(0)" class="imageModal">';
-                    $link .= '<img src="' . $products_image_large . '" height="' . SMALL_IMAGE_HEIGHT . '" width="'. SMALL_IMAGE_WIDTH . '" id="' . $i . '" alt="' . zen_output_string_protected($p1['products_name']) . '">';
+                    $link .= '<img src="' . $products_image_large . '" height="' . zen_config('SMALL_IMAGE_HEIGHT') . '" width="' . zen_config('SMALL_IMAGE_WIDTH') . '" id="' . $i . '" alt="' . zen_output_string_protected($p1['products_name']) . '">';
                     $link .= '<div class="p-1"></div>';
                     $link .= '<span class="imgLink">' . TEXT_CLICK_TO_ENLARGE . '</span>';
                     $link .= '</a>';

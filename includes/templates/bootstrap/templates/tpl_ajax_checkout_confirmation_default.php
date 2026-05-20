@@ -242,7 +242,7 @@ for ($i = 0, $n = count($order->products); $i < $n; $i++) {
 <?php
 }  // end for loopthru all products
 
-if (MODULE_ORDER_TOTAL_INSTALLED) {
+if (zen_config('MODULE_ORDER_TOTAL_INSTALLED')) {
     $_SESSION['zca_bootstrap_ot_colspan'] = ($tax_column_present === true) ? '3' : '2';
     $order_totals = $order_total_modules->process();
     $order_total_modules->output();
@@ -287,7 +287,7 @@ $(document).ready(function () {
             }
         }
     }
-    if (isset($processButtonOptions['extraFields']) && count($processButtonOptions['extraFields'])> 0 ) {
+    if (count($processButtonOptions['extraFields'] ?? []) > 0 ) {
         foreach ($processButtonOptions['extraFields'] as $fieldName => $fieldValue) {
            echo zen_draw_hidden_field($fieldName, $fieldValue);
         }

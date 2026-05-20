@@ -1,6 +1,6 @@
 <?php
 /**
- * BOOTSTRAP v3.7.0
+ * BOOTSTRAP v3.8.0
  *
  * index category_row.php
  *
@@ -35,7 +35,7 @@ if (empty($num_categories)) {
     return;
 }
 
-$columns_per_row = defined('MAX_DISPLAY_CATEGORIES_PER_ROW') ? (int)MAX_DISPLAY_CATEGORIES_PER_ROW : 0;
+$columns_per_row = (int)zen_config('MAX_DISPLAY_CATEGORIES_PER_ROW');
 $category_row_layout_style = $columns_per_row > 1 ? 'columns' : 'fluid';
 
 // if in fixed-columns mode, calculate column width
@@ -105,7 +105,7 @@ foreach ($categories as $next_category) {
         'params' => 'class="categoryListBoxContents card mb-3 p-3 text-center"',
         'text' =>
             '<a href="' . zen_href_link(FILENAME_DEFAULT, $cPath_new) . '">' .
-                zen_image(DIR_WS_IMAGES . $next_category['categories_image'], $next_category['categories_name'], SUBCATEGORY_IMAGE_WIDTH, SUBCATEGORY_IMAGE_HEIGHT, 'loading="lazy"') .
+                zen_image(DIR_WS_IMAGES . $next_category['categories_image'], $next_category['categories_name'], zen_config('SUBCATEGORY_IMAGE_WIDTH'), zen_config('SUBCATEGORY_IMAGE_HEIGHT'), 'loading="lazy"') .
                 '<br>' .
                 $next_category['categories_name'] .
             '</a>',

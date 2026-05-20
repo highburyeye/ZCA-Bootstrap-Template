@@ -69,7 +69,7 @@ img {
 
 <body>
     <h1>Bootstrap-4 Template for Zen Cart v1.5.8, v2.0.x, v2.1.0 and v2.2.x</h1>
-    <p>Version 3.7.10 by lat9, drbyte, scottcwilson, marco-pm, dbltoe, dennisns7d, brittainmark, torvista, proseLA, daphilli224, retched, highburyeye and piloujp</p>
+    <p>Version 3.8.0 by lat9, drbyte, scottcwilson, marco-pm, dbltoe, dennisns7d, brittainmark, torvista, proseLA, daphilli224, retched, highburyeye and piloujp</p>
     <p>Current Support Thread at Zen Cart Forums: <a href="https://www.zen-cart.com/showthread.php?223910-ZCA-Bootstrap-4-Template-Support-Thread" target="_blank">https://www.zen-cart.com/showthread.php?223910-ZCA-Bootstrap-4-Template-Support-Thread</a></p>
     <p>Zen Cart Download Link: <a href="https://www.zen-cart.com/downloads.php?do=file&id=2191" target="_blank">https://www.zen-cart.com/downloads.php?do=file&id=2191</a></p>
     <p>GitHub repository: <a href="https://github.com/lat9/ZCA-Bootstrap-Template" target="_blank">https://github.com/lat9/ZCA-Bootstrap-Template</a></p>
@@ -95,6 +95,7 @@ img {
         <li>/includes/classes/zca/zca_site_map.php</li>
         <li>/includes/extra_datafiles/dist.site-specific-bootstrap-settings.php <span class="smaller">(Added in v3.6.0)</span></li>
         <li>/includes/functions/zca_bootstrap_functions.php</li>
+        <li>/includes/functions/extra_functions/zen_config.php <span class="smaller">(Added in v3.8.0)</span></li>
         <li>/includes/init_includes/init_zca_bootstrap.php</li>
         <li>/includes/languages/bootstrap/lang.english.php <span class="smaller">(Added in v3.7.7)</span></li>
         <li><span class="removed">/includes/languages/english/bootstrap/lang.account_history_info.php</span> <span class="smaller">(Added in v3.6.0, removed in v3.7.7)</span></li>
@@ -121,6 +122,7 @@ img {
         <li>/YOUR_ADMIN/includes/css/colorpicker.css</li>
         <li>/YOUR_ADMIN/includes/extra_datafiles/zca_bootstrap_colors.php</li>
         <li><span class="removed">/YOUR_ADMIN/includes/functions/extra_functions/zen_cfg_read_only.php</span> <span class="smaller">(Added in v3.2.0, removed in v3.7.0)</span></li>
+        <li>/YOUR_ADMIN/includes/functions/extra_functions/zen_config.php <span class="smaller">(Added in v3.8.0)</span></li>
         <li>/YOUR_ADMIN/includes/init_includes/init_bc_config.php</li>
         <li>/YOUR_ADMIN/includes/init_includes/init_bc_config_install_or_upgrade.php <span class="smaller">(Added in v3.5.2)</span></li>
         <li>/YOUR_ADMIN/includes/init_includes/init_zca_bootstrap_template_admin.php</li>
@@ -165,12 +167,111 @@ img {
     <ul>
         <li>v3.8.0-beta1, 2026-05-19 (lat9)<ul>
             <li>BUGFIX: Remove additional checks for Zen Cart versions prior to 1.5.8.</li>
+            <li>CHANGE: Use <code>zen_config</code> to access configuration settings, preparation for encapsulation.</li>
             <li>The following files were changed, <span class="added">added</span> or <span class="removed">removed</span>:<ol>
+                <li>/includes/classes/observers/ZcaBootstrapObserver.php</li>
                 <li>/includes/functions/zca_bootstrap_functions.php</li>
+                <li><span class="added">/includes/functions/extra_functions/zen_config.php</span></li>
                 <li><span class="added">/includes/languages/english/extra_definitions/lang.zca_bootstrap_id.php</span></li>
-                <li><span class="removed">/includes/languages/english/extra_definitions/zca_bootstrap_id.php</li>
+                <li><span class="removed">/includes/languages/english/extra_definitions/zca_bootstrap_id.php</span></li>
+                <li>/includes/modules/bootstrap/centerboxes/also_purchased_products.php</li>
+                <li>/includes/modules/bootstrap/centerboxes/featured_categories.php</li>
+                <li>/includes/modules/bootstrap/centerboxes/featured_products.php</li>
+                <li>/includes/modules/bootstrap/centerboxes/new_products.php</li>
+                <li>/includes/modules/bootstrap/centerboxes/specials_index.php</li>
+                <li>/includes/modules/bootstrap/centerboxes/upcoming_products.php</li>
+                <li>/includes/modules/bootstrap/attributes.php</li>
+                <li>/includes/modules/bootstrap/bootstrap_additional_images.php</li>
+                <li>/includes/modules/bootstrap/bootstrap_slide_additional_images.php</li>
+                <li>/includes/modules/bootstrap/category_row.php</li>
+                <li>/includes/modules/bootstrap/product_listing.php</li>
+                <li>/includes/modules/pages/account_history/header_php_account_history_zca_bootstrap.php</li>
+                <li>/includes/modules/pages/featured_products/header_php_featured_products_zca_bootstrap.php</li>
+                <li>/includes/modules/pages/product_reviews/header_php_product_reviews_zca_bootstrap.php</li>
+                <li>/includes/modules/pages/products_all/header_php_products_all_zca_bootstrap.php</li>
+                <li>/includes/modules/pages/products_new/header_php_products_new_zca_bootstrap.php</li>
+                <li>/includes/modules/pages/specials/header_php_specials_zca_bootstrap.php</li>
+                <li>/includes/templates/bootstrap/centerboxes/tpl_modules_featured_products.php</li>
+                <li>/includes/templates/bootstrap/centerboxes/tpl_modules_specials_default.php</li>
+                <li>/includes/templates/bootstrap/centerboxes/tpl_modules_whats_new.php</li>
+                <li>/includes/templates/bootstrap/common/html_header.php</li>
+                <li>/includes/templates/bootstrap/common/tpl_footer.php</li>
+                <li>/includes/templates/bootstrap/common/tpl_header.php</li>
+                <li>/includes/templates/bootstrap/common/tpl_main_page.php</li>
+                <li>/includes/templates/bootstrap/common/tpl_offcanvas_menu.php</li>
+                <li>/includes/templates/bootstrap/jscript/jscript_bs4_ajax_search.php</li>
+                <li>/includes/templates/bootstrap/modalboxes/tpl_ajax_search.php</li>
+                <li>/includes/templates/bootstrap/modalboxes/tpl_attributes_qty_prices.php</li>
+                <li>/includes/templates/bootstrap/sideboxes/tpl_categories.php</li>
+                <li>/includes/templates/bootstrap/sideboxes/tpl_document_categories.php</li>
+                <li>/includes/templates/bootstrap/sideboxes/tpl_featured.php</li>
+                <li>/includes/templates/bootstrap/sideboxes/tpl_reviews_random.php</li>
+                <li>/includes/templates/bootstrap/sideboxes/tpl_shopping_cart.php</li>
+                <li>/includes/templates/bootstrap/sideboxes/tpl_specials.php</li>
+                <li>/includes/templates/bootstrap/sideboxes/tpl_whats_new.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_account_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_account_edit_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_account_history_info_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_address_book_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_address_book_register.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_ajax_checkout_confirmation_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_ask_a_question_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_checkout_confirmation_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_checkout_one_confirmation_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_checkout_payment_address_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_checkout_payment_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_checkout_shipping_address_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_checkout_success_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_checkout_success_guest.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_conditions_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_contact_us_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_create_account_register.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_discount_coupon_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_down_for_maintenance_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_gv_send_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_index_categories.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_index_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_index_product_list.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_index_slider.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_login_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_additional_images.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_categories_tabs.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_common_address_format.php</li>
                 <li>/includes/templates/bootstrap/templates/tpl_modules_create_account.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_main_product_image.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_opc_address_block.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_opc_conditions.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_opc_credit_selections.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_opc_customer_info.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_opc_payment_choices.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_opc_shipping_address.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_opc_shipping_choices.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_opc_shopping_cart.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_product_image.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_product_listing.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_shipping_estimator.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_order_status_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_page_2_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_page_3_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_page_4_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_page_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_page_not_found_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_privacy_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_product_info_display.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_product_reviews_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_product_reviews_write_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_products_all_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_reviews_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_search_result_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_shopping_cart_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_site_map_default.php</li>
+                <li>/includes/templates/bootstrap/template_info.php</li>
+                <li>/YOUR_ADMIN/zca_bootstrap_colors.php</li>
+                <li>/YOUR_ADMIN/includes/init_includes/init_bc_config.php</li>
+                <li>/YOUR_ADMIN/includes/init_includes/init_bc_config_install_or_upgrade.php</li>
                 <li>/YOUR_ADMIN/includes/init_includes/init_zca_bootstrap_template_admin.php</li>
+                <li>/YOUR_ADMIN/includes/init_includes/init_zca_bootstrap_template_admin_update.php</li>
+                <li><span class="added">/YOUR_ADMIN/includes/functions/extra_functions/zen_config.php</span></li>
             </ol></li>
         </ul></li>
         <li>v3.7.10, 2026-05-12 (lat9, piloujp)<ul>

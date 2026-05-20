@@ -2,7 +2,7 @@
 /**
  * Module Template - categories_tabs
  *
- * Bootstrap 3.7.9
+ * Bootstrap 3.8.0
  *
  * Template stub used to display categories-tabs output
  *
@@ -13,7 +13,7 @@
  */
 include DIR_WS_MODULES . zen_get_module_directory(FILENAME_CATEGORIES_TABS);
 
-if (CATEGORIES_TABS_STATUS === '1' && (!empty($links_list) || !empty($links_list_by_category))) {
+if (zen_config('CATEGORIES_TABS_STATUS') === '1' && (!empty($links_list) || !empty($links_list_by_category))) {
 ?>
 <div id="categoriesTabs" class="d-none d-lg-block">
     <nav class="nav nav-pills nav-fill" id="navCatTabs">

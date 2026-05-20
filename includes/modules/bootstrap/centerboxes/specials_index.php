@@ -7,7 +7,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: lat9 2019 Jan 06 Modified in v1.5.6b $
  *
- * BOOTSTRAP v3.6.4
+ * BOOTSTRAP v3.8.0
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -58,7 +58,7 @@ if ((($manufacturers_id > 0 && empty($_GET['filter_id'])) || !empty($_GET['music
 
 $num_products_count = 0;
 if ($special_products_query !== '') {
-    $special_products = $db->ExecuteRandomMulti($special_products_query, MAX_DISPLAY_SPECIAL_PRODUCTS_INDEX);
+    $special_products = $db->ExecuteRandomMulti($special_products_query, zen_config('MAX_DISPLAY_SPECIAL_PRODUCTS_INDEX'));
     $num_products_count = $special_products->RecordCount();
 }
 
@@ -82,10 +82,10 @@ if ($num_products_count > 0) {
         $special_products_link = zen_href_link(zen_get_info_page($special_products_id), 'cPath=' . $productsInCategory[$special_products_id] . '&products_id=' . $special_products_id);
 
         $special_products_image = '';
-        if (!($special_products->fields['products_image'] === '' && PRODUCTS_IMAGE_NO_IMAGE_STATUS === '0')) {
+        if (!($special_products->fields['products_image'] === '' && zen_config('PRODUCTS_IMAGE_NO_IMAGE_STATUS') === '0')) {
             $special_products_image =
                 '<a href="' . $special_products_link . '" title="' . zen_output_string_protected($special_products_name) . '">' .
-                    zen_image(DIR_WS_IMAGES . $special_products->fields['products_image'], $special_products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) .
+                    zen_image(DIR_WS_IMAGES . $special_products->fields['products_image'], $special_products_name, zen_config('SMALL_IMAGE_WIDTH'), zen_config('SMALL_IMAGE_HEIGHT')) .
                 '</a><br>';
         }
 
@@ -95,7 +95,7 @@ if ($num_products_count > 0) {
         ];
 
         $col++;
-        if ($col >= SHOW_PRODUCT_INFO_COLUMNS_SPECIALS_PRODUCTS) {
+        if ($col >= zen_config('SHOW_PRODUCT_INFO_COLUMNS_SPECIALS_PRODUCTS')) {
             $col = 0;
             $row++;
         }

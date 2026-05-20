@@ -29,11 +29,11 @@ if ($show_welcome === true) {
         $screen_reader_only = ' sr-only';
     }
 ?>
-    <h1 id="indexCategories-pageHeading" class="pageHeading<?php echo $screen_reader_only; ?>"><?php echo $heading_title; ?></h1>
+    <h1 id="indexCategories-pageHeading" class="pageHeading<?= $screen_reader_only ?>"><?= $heading_title ?></h1>
 <?php
-    if (SHOW_CUSTOMER_GREETING === '1') {
+    if (zen_config('SHOW_CUSTOMER_GREETING') === '1') {
 ?>
-    <h2 id="indexCategories-greeting" class="greeting"><?php echo zen_customer_greeting(); ?></h2>
+    <h2 id="indexCategories-greeting" class="greeting"><?= zen_customer_greeting() ?></h2>
 <?php
     }
 
@@ -45,7 +45,7 @@ if ($show_welcome === true) {
         <?php require $template->get_template_dir('tpl_index_slider.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_index_slider.php'; ?>
     </div>
 <?php
-    if (DEFINE_MAIN_PAGE_STATUS === '1' || DEFINE_MAIN_PAGE_STATUS === '2') {
+    if (in_array(zen_config('DEFINE_MAIN_PAGE_STATUS'), ['1', '2'], true)) {
 ?>
     <div id="indexCategories-defineContent" class="defineContent">
 <?php
@@ -59,16 +59,16 @@ if ($show_welcome === true) {
     }
 } else {
 ?>
-    <h1 id="indexCategories-pageHeading" class="pageHeading"><?php echo $current_categories_name; ?></h1>
+    <h1 id="indexCategories-pageHeading" class="pageHeading"><?= $current_categories_name ?></h1>
 <?php
 }
 
-if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS_TOP === 'true') {
+if (zen_config('PRODUCT_LIST_CATEGORIES_IMAGE_STATUS_TOP') === 'true') {
     // categories_image
     if ($categories_image = zen_get_categories_image($current_category_id)) {
 ?>
     <div id="indexCategories-categoryImage" class="categoryImage">
-        <?php echo zen_image(DIR_WS_IMAGES . $categories_image, '', SUBCATEGORY_IMAGE_TOP_WIDTH, SUBCATEGORY_IMAGE_TOP_HEIGHT); ?>
+        <?= zen_image(DIR_WS_IMAGES . $categories_image, '', zen_config('SUBCATEGORY_IMAGE_TOP_WIDTH'), zen_config('SUBCATEGORY_IMAGE_TOP_HEIGHT')) ?>
     </div>
 <?php
     }
@@ -78,12 +78,12 @@ if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS_TOP === 'true') {
 if ($current_categories_description !== '') {
 ?>
     <div id="indexCategories-categoryDescription" class="categoryDescription content">
-        <?php echo $current_categories_description;  ?>
+        <?= $current_categories_description;  ?>
     </div>
 <?php
 } // categories_description
 
-if (PRODUCT_LIST_CATEGORY_ROW_STATUS !== '0') {
+if (zen_config('PRODUCT_LIST_CATEGORY_ROW_STATUS') !== '0') {
    /**
     * require the code to display the sub-categories-grid, if any exist
     */

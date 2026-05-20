@@ -40,7 +40,7 @@ foreach ($categories_tab as $category_tab) {
 ?>
         </ul>
 <?php
-if (SHOW_CATEGORIES_BOX_SPECIALS === 'true') {
+if (zen_config('SHOW_CATEGORIES_BOX_SPECIALS') === 'true') {
     $show_this = $db->Execute("SELECT s.products_id FROM " . TABLE_SPECIALS . " s WHERE s.status = 1 LIMIT 1");
     if (!$show_this->EOF) {
 ?>
@@ -52,7 +52,7 @@ if (SHOW_CATEGORIES_BOX_SPECIALS === 'true') {
     }
 }
 
-if (SHOW_CATEGORIES_BOX_PRODUCTS_NEW === 'true') {
+if (zen_config('SHOW_CATEGORIES_BOX_PRODUCTS_NEW') === 'true') {
       // display limits
     $display_limit = zen_get_new_date_range();
     $show_this = $db->Execute("SELECT p.products_id FROM " . TABLE_PRODUCTS . " p WHERE p.products_status = 1 " . $display_limit . " LIMIT 1");
@@ -66,7 +66,7 @@ if (SHOW_CATEGORIES_BOX_PRODUCTS_NEW === 'true') {
     }
 }
 
-if (SHOW_CATEGORIES_BOX_FEATURED_PRODUCTS === 'true') {
+if (zen_config('SHOW_CATEGORIES_BOX_FEATURED_PRODUCTS') === 'true') {
     $show_this = $db->Execute("SELECT products_id FROM " . TABLE_FEATURED . " WHERE status = 1 LIMIT 1");
     if (!$show_this->EOF) {
 ?>
@@ -78,7 +78,7 @@ if (SHOW_CATEGORIES_BOX_FEATURED_PRODUCTS === 'true') {
     }
 }
 
-if (SHOW_CATEGORIES_BOX_PRODUCTS_ALL === 'true') {
+if (zen_config('SHOW_CATEGORIES_BOX_PRODUCTS_ALL') === 'true') {
 ?>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="<?= zen_href_link(FILENAME_PRODUCTS_ALL) ?>">
@@ -175,7 +175,7 @@ if (!$more_information_sidebox->EOF) {
 }
 
 // test if ez-pages links should display
-if (EZPAGES_STATUS_SIDEBOX === '1' || (EZPAGES_STATUS_SIDEBOX === '2' && zen_is_whitelisted_admin_ip())) {
+if (zen_config('EZPAGES_STATUS_SIDEBOX') === '1' || (zen_config('EZPAGES_STATUS_SIDEBOX') === '2' && zen_is_whitelisted_admin_ip())) {
     if (isset($var_linksList)) {
         unset($var_linksList);
     }
@@ -200,10 +200,10 @@ if (EZPAGES_STATUS_SIDEBOX === '1' || (EZPAGES_STATUS_SIDEBOX === '2' && zen_is_
     if (!$page_query->EOF) {
         $page_query_list_sidebox = [];
         foreach ($page_query as $next_page) {
-            $next_page_entry = array(
+            $next_page_entry = [
                 'name' => htmlspecialchars($next_page['pages_title'], ENT_COMPAT, CHARSET, true),
-            );
-            
+            ];
+
             switch (true) {
                 // external link new window or same window
                 case ($next_page['alt_url_external'] !== ''):
@@ -237,7 +237,7 @@ if (EZPAGES_STATUS_SIDEBOX === '1' || (EZPAGES_STATUS_SIDEBOX === '2' && zen_is_
             // generated in the loop below!
             //
             $next_page_entry['link'] .= ($next_page['page_open_new_window'] === '1') ? '" target="_blank" rel="noopener' : '';
-            
+
             $page_query_list_sidebox[] = $next_page_entry;
         }
     }
