@@ -320,12 +320,12 @@ foreach ($configuration as $item) {
             <div class="col-sm-6 color-value">
 <?php
     $default_column_width = '8';
+    $disabled = '';
     if ($not_set_present === true) {
         $default_column_width = '4';
 ?>
                 <div class="col-sm-4">
 <?php
-        $disabled = '';
         if ($not_set_ok === true && $cfgValueColor === 'not-set') {
             $disabled = 'disabled';
             $choose_id = "choose-$cID";
