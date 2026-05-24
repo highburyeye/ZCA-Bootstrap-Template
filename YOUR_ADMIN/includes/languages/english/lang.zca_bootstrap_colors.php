@@ -14,7 +14,8 @@ return [
 
     'TEXT_NOTES' => ' Notes:',
     'TEXT_NOTE_LIST' =>
-        '<li>All changes are saved when you click the <em>Save All</em> button.</li>' .
+        '<li>All changes are saved when you click the <em>Save All</em> button.</li>',
+    'TEXT_NOTE_NOTSET_LIST' =>
         '<li>Any colors added for the template\'s v3.5.2 and later are initialized on an upgrade to <code>not-set</code>, enabling a store to set these values to match its color scheme prior to use.</li>' .
         '<li>Colors that are currently <code>not-set</code> display with a <em>Use Default?</em> checkbox. Click that checkbox to initialize the color to its default.</li>',
 
