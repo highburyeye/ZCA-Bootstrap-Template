@@ -162,6 +162,8 @@ img {
         <li>v3.6.0</li>
         <li>v3.7.0</li>
     </ul>
+    <h4>v3.8.0 Now Uses CSS Variables</h4>
+    <p>This change allows the <code>stylesheet_zca_colors.css</code> to be cached by the browser. All of the template's colors, set by the admin's <em>Tools :: ZCA Bootstrap Colors</em> tool, are now defined as CSS variables, enabling your site to also use these color definitions.</p>
 
     <h2>Version History</h2>
     <p>This section identifies the template's version history and changes, starting with its v2.0.0c release.  Prior version changes can be found in the root of the template's distribution zip-file (<code>CHANGELOG.txt</code>).</p>
@@ -172,6 +174,7 @@ img {
             <li>CHANGE: Update the <em>ZCA Bootstrap Colors</em> tool, allowing all colors to be modified in a single view.</li>
             <li>BUGFIX: Initial install of the colors can result in missing colors.</li>
             <li>CHANGE: Add <code>zen_add_filemtime</code> usage and merge version-specific CSS files back into <code>stylesheet.css</code>.</li>
+            <li>CHANGE: Use CSS <var>variables</var> for the Bootstrap Colors.</li>
             <li>The following files were changed, <span class="added">added</span> or <span class="removed">removed</span>:<ol>
                 <li>/includes/classes/observers/ZcaBootstrapObserver.php</li>
                 <li>/includes/functions/zca_bootstrap_functions.php</li>
@@ -205,6 +208,7 @@ img {
                 <li>/includes/templates/bootstrap/common/tpl_header.php</li>
                 <li>/includes/templates/bootstrap/common/tpl_main_page.php</li>
                 <li>/includes/templates/bootstrap/common/tpl_offcanvas_menu.php</li>
+                <li><span class="added">/includes/templates/css/bootstrap_color_vars.php</span></li>
                 <li>/includes/templates/bootstrap/css/stylesheet.css</li>
                 <li><span class="removed">/includes/templates/bootstrap/css/stylesheet_360.css</span></li>
                 <li><span class="removed">/includes/templates/bootstrap/css/stylesheet_361.css</span></li>
@@ -213,6 +217,8 @@ img {
                 <li><span class="removed">/includes/templates/bootstrap/css/stylesheet_373.css</span></li>
                 <li><span class="removed">/includes/templates/bootstrap/css/stylesheet_374.css</span></li>
                 <li><span class="removed">/includes/templates/bootstrap/css/stylesheet_378.css</span></li>
+                <li><span class="added">/includes/templates/bootstrap/css/stylesheet_zca_colors.css</span></li>
+                <li>/includes/templates/bootstrap/css/stylesheet_zca_colors.php <span class="smaller">(Note: This file is simply a stub for any previous file version)</span></li>
                 <li>/includes/templates/bootstrap/jscript/jscript_bs4_ajax_search.php</li>
                 <li>/includes/templates/bootstrap/modalboxes/tpl_ajax_search.php</li>
                 <li>/includes/templates/bootstrap/modalboxes/tpl_attributes_qty_prices.php</li>
