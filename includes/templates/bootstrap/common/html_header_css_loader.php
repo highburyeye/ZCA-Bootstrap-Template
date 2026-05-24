@@ -5,7 +5,7 @@
  * BOOTSTRAP 3.8.0
  *
  * NOTE: This module can be removed from the template once support for Zen Cart
- * versions less than v2.1.0 is dropped! Unless, of course, there are site-specific
+ * versions less than v3.0.0 is dropped! Unless, of course, there are site-specific
  * changes made!
  *
  * Outputs the html header's CSS files.
@@ -14,11 +14,15 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: DrByte 2024 Feb 11 Modified in v2.0.0-beta1 $
- 
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
+
+// -----
+// First, load the template's CSS variables formatter.
+//
+require $template->get_template_dir('^bootstrap_color_vars.php', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/bootstrap_color_vars.php';
 
 // -----
 // zc300's version of the common file provides the zen_add_filemtime "cache buster".
