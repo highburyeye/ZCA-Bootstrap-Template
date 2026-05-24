@@ -33,6 +33,8 @@ if (zen_config('SHOW_CUSTOMER_GREETING') === '1') {
 ?>
     <h2 id="indexDefault-greeting" class="greeting"><?= zen_customer_greeting() ?></h2>
 <?php
+}
+
 // -----
 // Load the home-page slider.
 //
