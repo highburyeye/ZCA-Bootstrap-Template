@@ -220,9 +220,27 @@ switch ($action) {
                 </a>
             </div>
         </div>
-
+<?php
+// -----
+// Run a quick check of the colors' configuration to see if any of the
+// colors are currently 'not-set'. If none are, then the 'column' associated
+// with a "Set Default?" checkbox need not be rendered.
+//
+$not_set_check = $db->Execute(
+    "SELECT *
+       FROM " . TABLE_CONFIGURATION . "
+      WHERE configuration_group_id = " . $gID . "
+        AND configuration_value = 'not-set'
+      LIMIT 1"
+);
+$not_set_present = !$not_set_check->EOF;
+unset($not_set_check);
+?>
         <p class="pt-2"><b><?= TEXT_NOTES ?></b></p>
-        <ul><?= TEXT_NOTE_LIST ?></ul>
+        <ul>
+            <?= TEXT_NOTE_LIST ?>
+            <?= ($not_set_present === true) ? TEXT_NOTE_UNSET_LIST : '' ?>
+        </ul>
 <?php
 $filter_types = [
     ['id' => 'color', 'text' => TEXT_FILTER_COLOR_VALUE],
@@ -264,13 +282,6 @@ $configuration = $db->Execute(
       ORDER BY sort_order"
 );
 foreach ($configuration as $item) {
-    // -----
-    // Any setting containing a <b> in its title indicates the start of a grouping; these have a different
-    // background color for the row.
-    //
-    $is_grouping_row = (strpos($item['configuration_title'], '<b>') !== false);
-
-    $row_class = /* ($is_grouping_row === true) ? 'bg-info' : */ 'dataTableRow';
     $cID = $item['configuration_id'];
 
     // -----
@@ -294,7 +305,7 @@ foreach ($configuration as $item) {
     //
     $cfg_default_color = strstr(str_replace('Default: ', '', $item['configuration_description']), '.', true);
 ?>
-        <div class="row <?= $row_class ?> row-hover align-items-center py-2">
+        <div class="row dataTableRow row-hover align-items-center py-2">
             <div class="col-sm-4 bc-title">
                 <?= $item['configuration_title'] ?>
 <?php
@@ -307,24 +318,32 @@ foreach ($configuration as $item) {
             </div>
 
             <div class="col-sm-6 color-value">
-                <div class="col-md-4">
 <?php
-    $disabled = '';
-    if ($not_set_ok === true && $cfgValueColor === 'not-set') {
-        $disabled = 'disabled';
-        $choose_id = "choose-$cID";
+    $default_column_width = '8';
+    if ($not_set_present === true) {
+        $default_column_width = '4';
+?>
+                <div class="col-sm-4">
+<?php
+        $disabled = '';
+        if ($not_set_ok === true && $cfgValueColor === 'not-set') {
+            $disabled = 'disabled';
+            $choose_id = "choose-$cID";
 ?>
                     <?= zen_draw_label(TEXT_LABEL_NOT_SET_USE_DEFAULT, $choose_id, 'class="control-label"') ?>
                     <?= zen_draw_checkbox_field('choose', '', false, '', 'id="' . $choose_id . '" class="color-choose" data-cid="' . $cID . '" data-default="' . $cfg_default_color . '"') ?>
 <?php
-    }
+        }
 ?>
                 </div>
-                <div class="col-md-4 text-center">
+<?php
+    }
+?>
+                <div class="col-sm-4 text-center">
                     <?= zen_draw_input_field("colors[$cID]", $cfgValueColor, 'class="form-control color-val" data-cid="' . $cID . '" data-color-format="hex" size="8" ' . $disabled) ?>
                 </div>
-                <div class="col-md-4">
-                    <div class="p-2"><small class="text-muted">
+                <div class="col-sm-<?= $default_column_width ?>">
+                    <div class="px-2"><small class="text-muted">
                         <?= TEXT_DEFAULT ?>
                         <i class="fa fa-square fa-border" aria-hidden="true" style="color: <?= $cfg_default_color ?>;"></i>
                         <?= $cfg_default_color ?>
