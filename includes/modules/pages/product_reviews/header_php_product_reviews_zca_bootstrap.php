@@ -16,13 +16,13 @@ if (function_exists('zca_bootstrap_active') && zca_bootstrap_active()) {
     $reviews_split = new zca_splitPageResults($reviews_query_raw, zen_config('MAX_DISPLAY_NEW_REVIEWS'));
     $reviews = $db->Execute($reviews_split->sql_query);
     $reviewsArray = [];
-    foreach ($reviews as $review) {
+    foreach ($reviews as $next_review) {
         $reviewsArray[] = [
-            'id' => $review['reviews_id'],
-            'customersName' => $review['customers_name'],
-            'dateAdded' => $review['date_added'],
-            'reviewsText' => $review['reviews_text'],
-            'reviewsRating' => $review['reviews_rating']
+            'id' => $next_review['reviews_id'],
+            'customersName' => $next_review['customers_name'],
+            'dateAdded' => $next_review['date_added'],
+            'reviewsText' => $next_review['reviews_text'],
+            'reviewsRating' => $next_review['reviews_rating']
         ];
     }
 }
