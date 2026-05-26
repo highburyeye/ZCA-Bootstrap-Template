@@ -117,7 +117,7 @@ if ($confirmation_required === true) {
         <div id="orderComment-card" class="card mb-3">
             <h4 id="orderComment-card-header" class="card-header"><?= HEADING_ORDER_COMMENTS ?></h4>
             <div id="orderComment-card-body" class="card-body p-3">
-                <?= (empty($order->info['comments']) ? NO_COMMENTS_TEXT : nl2br(zen_output_string_protected($order->info['comments'])) . zen_draw_hidden_field('comments', $order->info['comments'])) ?>
+                <?= (empty($order->info['comments']) ? NO_COMMENTS_TEXT : nl2br(zen_output_string_protected($order->info['comments']), false) . zen_draw_hidden_field('comments', $order->info['comments'])) ?>
 
                 <div id="orderComment-btn-toolbar" class="btn-toolbar justify-content-end mt-3" role="toolbar">
                     <?= zca_button_link(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'), BUTTON_EDIT_SMALL_ALT, 'small_edit') ?>
@@ -179,7 +179,7 @@ if ($confirmation_required === true) {
 <?php
             foreach ($order->products[$i]['attributes'] as $next_attribute) {
 ?>
-                                        <li><?= $next_attribute['option'] . ': ' . nl2br(zen_output_string_protected($next_attribute['value'])) ?></li>
+                                        <li><?= $next_attribute['option'] . ': ' . nl2br(zen_output_string_protected($next_attribute['value']), false) ?></li>
 <?php
             } // end loop
 ?>

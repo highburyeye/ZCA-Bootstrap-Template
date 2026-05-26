@@ -85,7 +85,7 @@ foreach ($order->products as $product) {
 <?php
         foreach ($product['attributes'] as $attribute) {
 ?>
-                                    <li><?= $attribute['option'] . TEXT_OPTION_DIVIDER . nl2br(zen_output_string_protected($attribute['value'])) ?></li>
+                                    <li><?= $attribute['option'] . TEXT_OPTION_DIVIDER . nl2br(zen_output_string_protected($attribute['value']), false) ?></li>
 <?php
         }
 ?>
@@ -206,7 +206,7 @@ if (!empty($statusArray)) {
                                 <td class="commentsCell">
 <?php 
         if (!empty($statuses['comments'])) {
-            echo nl2br(zen_output_string($statuses['comments'], false, $protected));
+            echo nl2br(zen_output_string($statuses['comments'], false, $protected), false);
         }
 ?>
                                 </td> 

@@ -2,7 +2,7 @@
 /**
  * Page Template
  *
- * BOOTSTRAP v3.6.5
+ * BOOTSTRAP v3.8.0
  *
  * Loaded automatically by index.php?main_page=checkout_confirmation.
  * Displays final checkout details, cart, payment and shipping info details.
@@ -141,7 +141,7 @@ if ($_SESSION['sendto'] != false) {
                 <?= HEADING_ORDER_COMMENTS ?>
             </h4>
             <div id="orderComment-card-body" class="card-body p-3">
-                <?= (empty($order->info['comments']) ? NO_COMMENTS_TEXT : nl2br(zen_output_string_protected($order->info['comments'])) . zen_draw_hidden_field('comments', $order->info['comments'])) ?>
+                <?= (empty($order->info['comments']) ? NO_COMMENTS_TEXT : nl2br(zen_output_string_protected($order->info['comments']), false) . zen_draw_hidden_field('comments', $order->info['comments'])) ?>
 
                 <div id="orderComment-btn-toolbar" class="btn-toolbar justify-content-end mt-3" role="toolbar">
                     <?= zca_button_link(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'), BUTTON_EDIT_SMALL_ALT, 'small_edit') ?>
@@ -209,7 +209,7 @@ for ($i = 0, $n = count($order->products); $i < $n; $i++) {
         foreach ($order->products[$i]['attributes'] as $next_attrib) {
 ?>
                                         <li>
-                                            <?= $next_attrib['option'] . ': ' . nl2br(zen_output_string_protected($next_attrib['value'])) ?>
+                                            <?= $next_attrib['option'] . ': ' . nl2br(zen_output_string_protected($next_attrib['value']), false) ?>
                                         </li>
 <?php
         } // end loop
