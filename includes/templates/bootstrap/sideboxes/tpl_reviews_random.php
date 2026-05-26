@@ -34,7 +34,7 @@ while (!$random_review_sidebox_product->EOF) {
             '<a href="' . zen_href_link(FILENAME_PRODUCT_REVIEWS_INFO, 'products_id=' . $current_review['products_id'] . '&reviews_id=' . $current_review['reviews_id']) . '" title="' . zen_output_string_protected($current_review['products_name']) . '">' .
                 zen_image(DIR_WS_IMAGES . $current_review['products_image'], $current_review['products_name'], zen_config('SMALL_IMAGE_WIDTH'), zen_config('SMALL_IMAGE_HEIGHT')) .
                 '<br>' .
-                nl2br(zen_trunc_string(zen_output_string_protected(stripslashes($current_review['reviews_text'])), 60), true) .
+                nl2br(zen_trunc_string(zen_output_string_protected(stripslashes($current_review['reviews_text'])), 60), false) .
             '</a>' .
             '<div class="p-3 text-center rating">' .
                 zca_get_rating_stars($current_review['reviews_rating'], 'xs') .

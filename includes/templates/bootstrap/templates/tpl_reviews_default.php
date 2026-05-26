@@ -60,7 +60,7 @@ if ($reviews_split->number_of_rows > 0) {
             </div>
             <blockquote class="blockquote mb-0">
                 <div id="review<?= $reviews_id ?>-content" class="content">
-                    <?= zen_trunc_string(nl2br(zen_output_string_protected(stripslashes($review['reviews_text']))), zen_config('MAX_PREVIEW')) ?>
+                    <?= zen_trunc_string(nl2br(zen_output_string_protected(stripslashes($review['reviews_text'])), false), zen_config('MAX_PREVIEW')) ?>
                 </div>
                 <footer class="blockquote-footer">
                     <cite title="Source Title"><?= sprintf(TEXT_REVIEW_BY, zen_output_string_protected($review['customers_name'])) ?></cite>
