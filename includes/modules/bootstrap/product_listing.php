@@ -252,7 +252,7 @@ if ($num_products_count > 0) {
         $more_info_button = '<a class="moreinfoLink" href="' . $href . '">' . MORE_INFO_TEXT . '</a>';
 
         $buy_now_link = zen_href_link($_GET['main_page'], zen_get_all_get_params(['action']) . 'action=buy_now&products_id=' . $record['products_id']);
-        $buy_now_button = zca_button_link($buy_now_link, BUTTON_BUY_NOW_ALT, 'mt-2 button_buy_now listingBuyNowButton');
+        $buy_now_button = zca_button_link($buy_now_link, BUTTON_BUY_NOW_ALT, 'mt-2 button_buy_now listingBuyNowButton', 'rel="nofollow"');
 
         $lc_button = '';
         if (zen_requires_attribute_selection($record['products_id']) || zen_config('PRODUCT_LIST_PRICE_BUY_NOW') === '0') {
